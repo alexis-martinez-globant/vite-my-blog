@@ -17,7 +17,7 @@
           <td>{{ post.id }}</td>
           <td>{{ post.title }}</td>
           <td>{{ post.body }}</td>
-          <td>
+          <td class="bg-green">
             <!-- <router-link to="/blog/{{blog.id}}">► {{ blog.id }}</router-link> -->
             <!-- <router-link to="/blog/${{blog.id}}">► {{ blog.id }}</router-link> -->
             <!-- <router-link to="`/blog/${{blog.id}}`">► {{ blog.id }}</router-link> -->
@@ -88,13 +88,19 @@ export default {
 <style scoped>
 table {
   background: #666;
+  border-collapse: separate;
+  border-spacing: 5px 15px;
+  padding: 5px;
+}
+thead {
+  background: rgb(190, 190, 190);
 }
 tbody {
-  background: rgb(136, 134, 134);
+  background: rgb(134, 134, 134);
 }
 th,
 td {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.651);
 }
 
 a {
@@ -102,12 +108,14 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: red;
+  color: rgb(68, 209, 68);
 }
 th {
   font-weight: bold;
 }
-
+.bg-green {
+  background: green;
+}
 div:nth-child(3) > table {
   width: 80%;
   margin: 0 auto;
@@ -125,5 +133,12 @@ div:nth-child(4) > table > tr:nth-child(4) > td:nth-child(2) {
 #app > div:nth-child(3) > table > tr:nth-child(2) > td:nth-child(4) {
   vertical-align: initial;
   padding-top: 5px;
+}
+
+td a {
+  display: block;
+}
+td[class="bg-green"]:hover {
+  background: rgb(119, 148, 119);
 }
 </style>

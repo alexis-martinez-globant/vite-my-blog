@@ -156,13 +156,19 @@ export default {
 <style scoped>
 table {
   background: #666;
+  border-collapse: separate;
+  border-spacing: 5px 15px;
+  padding: 5px;
+}
+thead {
+  background: rgb(190, 190, 190);
 }
 tbody {
   background: rgb(136, 134, 134);
 }
 th,
 td {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.651);
   padding: 5px;
 }
 div:nth-child(3) > table {

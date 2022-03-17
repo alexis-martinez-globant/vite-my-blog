@@ -95,14 +95,14 @@ export default {
 
 <style scoped>
 table {
-  background: #666;
+  background: rgb(190, 190, 190);
 }
 tbody {
   background: rgb(136, 134, 134);
 }
 th,
 td {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.651);
 }
 td {
   min-height: 20px;
@@ -156,8 +156,5 @@ span {
 
 .textRed {
   color: red;
-}
-.textWite {
-  color: #fff;
 }
 </style>
