@@ -14,9 +14,9 @@ const routes = [
     component: () => import("../pages/Login.vue"),
   },
   {
-    path: "/blog/:id",
-    name: "Blog",
-    component: () => import("../pages/Blog.vue"),
+    path: "/post/:id",
+    name: "Post",
+    component: () => import("../pages/Post.vue"),
     props: (route) => {
       // console.log("rutas " + route.params.id);
       const postId = route.params.postId;
@@ -25,16 +25,16 @@ const routes = [
     },
   },
   {
-    path: "/newblog",
-    alias: "/NewBlog",
-    name: "NewBlog",
-    component: () => import("../pages/NewBlog.vue"),
+    path: "/newpost",
+    alias: "/NewPost",
+    name: "NewPost",
+    component: () => import("../pages/NewPost.vue"),
   },
   {
-    path: "/allBlogs",
-    alias: "/AllBlogs",
-    name: "AllBlogs",
-    component: () => import("../pages/AllBlogs.vue"),
+    path: "/allPosts",
+    alias: "/AllPosts",
+    name: "AllPosts",
+    component: () => import("../pages/AllPosts.vue"),
   },
   {
     path: "/:pathMatch(.*)*",

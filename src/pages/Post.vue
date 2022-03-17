@@ -1,24 +1,24 @@
 <template>
   <h1>
-    Blog <span>{{ id }}</span>
+    Post <span>{{ id }}</span>
   </h1>
 
-  <div v-if="blog">
+  <div v-if="post">
     <table border="1">
       <thead>
         <tr>
           <th>User id</th>
-          <th>Blog id</th>
+          <th>Post id</th>
           <th>Title</th>
           <th>Texto</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>{{ blog.userId }}</td>
-          <td>{{ blog.id }}</td>
-          <td>{{ blog.title }}</td>
-          <td>{{ blog.body }}</td>
+          <td>{{ post.userId }}</td>
+          <td>{{ post.id }}</td>
+          <td>{{ post.title }}</td>
+          <td>{{ post.body }}</td>
         </tr>
       </tbody>
     </table>
@@ -31,13 +31,13 @@
           <!-- <th>Post id</th> -->
           <!-- <th>User Email</th> -->
           <!-- <th>Title</th> -->
-          <th>Comments for de post: {{ blog.id }}</th>
+          <th>Comments for de post: {{ post.id }}</th>
         </tr>
       </thead>
 
       <tbody>
         <div v-for="comment in comments" :key="comment.id">
-          <div v-if="comment.postId === blog.userId">
+          <div v-if="comment.postId === post.userId">
             <!-- <td>{{ comment.postId }}</td> -->
             <tr>
               <td>{{ comment.email }}</td>
@@ -71,14 +71,14 @@ export default {
   // },
   data() {
     return {
-      blog: null,
+      post: null,
       comment: null,
       comments: null,
     };
   },
 
   created() {
-    this.getBlog();
+    this.getPost();
     // this.getComment();
     this.getAllComments();
     this.readParams();
@@ -96,12 +96,12 @@ export default {
   },
 
   methods: {
-    async getBlog() {
+    async getPost() {
       try {
-        const blog = await fetch(
+        const post = await fetch(
           `https://jsonplaceholder.typicode.com/posts/${this.id}`
         ).then((r) => r.json());
-        this.blog = blog;
+        this.post = post;
         // console.log(blog);
       } catch (error) {
         this.$router.push("/");
@@ -136,7 +136,7 @@ export default {
     },
 
     async readParams() {
-      console.log(this.blog);
+      console.log(this.post);
       console.table(this.comments);
       console.log(this.id);
       console.table(this.postId);
@@ -144,7 +144,7 @@ export default {
   },
   watch: {
     id() {
-      this.getBlog();
+      this.getPost();
     },
     // postId() {
     //   this.getComment();

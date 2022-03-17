@@ -1,30 +1,31 @@
 <template>
-  <h1>All Blogs</h1>
-  <div v-if="blogs">
+  <h1>All Posts</h1>
+  <div v-if="posts">
     <table border="1">
       <thead>
         <tr>
           <th>User id</th>
-          <th>Blog id</th>
+          <th>Post id</th>
           <th>Title</th>
-          <th>Body</th>
+          <th>Text</th>
           <!-- <th>Go to</th> -->
         </tr>
       </thead>
       <tbody>
-        <tr v-for="blog in blogs" :key="blog.id">
-          <td>{{ blog.userId }}</td>
-          <td>{{ blog.id }}</td>
-          <td>{{ blog.title }}</td>
-          <td>{{ blog.body }}</td>
+        <tr v-for="post in posts" :key="post.id">
+          <td>{{ post.userId }}</td>
+          <td>{{ post.id }}</td>
+          <td>{{ post.title }}</td>
+          <td>{{ post.body }}</td>
           <td>
             <!-- <router-link to="/blog/{{blog.id}}">► {{ blog.id }}</router-link> -->
             <!-- <router-link to="/blog/${{blog.id}}">► {{ blog.id }}</router-link> -->
             <!-- <router-link to="`/blog/${{blog.id}}`">► {{ blog.id }}</router-link> -->
             <router-link
-              :to="{ name: 'Blog', params: { id: blog.id, postId: blog.id } }"
-              >►</router-link
+              :to="{ name: 'Post', params: { id: post.id, postId: post.id } }"
             >
+              ►
+            </router-link>
           </td>
         </tr>
       </tbody>
@@ -36,23 +37,23 @@
 export default {
   data() {
     return {
-      blogs: null,
+      posts: null,
       comments: null,
     };
   },
 
   created() {
-    this.getAllBlogs();
+    this.getAllPosts();
     // this.getComments();
   },
 
   methods: {
-    async getAllBlogs() {
+    async getAllPosts() {
       try {
-        const blogs = await fetch(
+        const posts = await fetch(
           `https://jsonplaceholder.typicode.com/posts/`
         ).then((r) => r.json());
-        this.blogs = blogs;
+        this.posts = posts;
         // console.log(blogs);
       } catch (error) {
         this.$router.push("/");
@@ -75,7 +76,7 @@ export default {
   },
   watch: {
     id() {
-      this.getAllBlogs();
+      this.getAllPosts();
     },
     // postId() {
     //   this.getAllComments();

@@ -5,9 +5,9 @@
       <li><router-link to="/Login">Login</router-link></li>
       <li>
         <!-- <router-link :to="{ name: 'Blog', params: { id: 1, postId: 1 } }" >Blog</router-link > -->
-        <router-link :to="{ name: 'NewBlog' }">New Blog</router-link>
+        <router-link :to="{ name: 'NewPost' }">New Post</router-link>
       </li>
-      <li><router-link to="/AllBlogs">All Blogs</router-link></li>
+      <li><router-link to="/AllPosts">All Posts</router-link></li>
     </ul>
   </div>
 </template>
