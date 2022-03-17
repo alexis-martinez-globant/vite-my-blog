@@ -1,5 +1,4 @@
 <template>
-  <!-- <h1>{{ New Blog }}</h1> -->
   <h1>Post: {{ titulo }}</h1>
   <div>
     <table border="1">
@@ -16,9 +15,10 @@
               placeholder="New title"
               v-model="titulo"
               @keydown="counter1change"
-              maxlength="50"
+              maxlength="25"
             />
-            <span id="spanTitulo">{{ counter1 }}</span>
+            <!-- <span id="spanTitulo">{{ counter1 }}</span> -->
+            <span v-bind:class="{ textRed: counterTitle }">{{ counter1 }}</span>
           </td>
           <td>
             <textarea
@@ -29,7 +29,8 @@
               @keydown="counter2change"
               maxlength="256"
             />
-            <span id="spanTexto">{{ counter2 }}</span>
+            <!-- <span id="spanTexto">{{ counter2 }}</span> -->
+            <span v-bind:class="{ textRed: counterText }">{{ counter2 }}</span>
           </td>
           <td>
             <button type="submit" @click="botonClick">+</button>
@@ -52,31 +53,34 @@ export default {
     return {
       titulo: "",
       texto: "",
-      counter1: 50,
+      counter1: 25,
       counter2: 256,
+      counterTitle: false,
+      counterText: false,
     };
   },
   methods: {
     counter1change() {
-      this.counter1 = 50;
+      this.counter1 = 25;
       this.counter1 = this.counter1 - this.titulo.length;
 
       if (this.counter1 < 6) {
-        document.querySelector("#spanTitulo").classList.add("textRed");
+        this.counterTitle = true;
       } else {
-        document.querySelector("#spanTitulo").classList.remove("textRed");
+        this.counterTitle = false;
       }
 
       return this.counter1;
     },
+
     counter2change() {
       this.counter2 = 256;
       this.counter2 = this.counter2 - this.texto.length;
 
       if (this.counter2 < 11) {
-        document.querySelector("#spanTexto").classList.add("textRed");
+        this.counterText = true;
       } else {
-        document.querySelector("#spanTexto").classList.remove("textRed");
+        this.counterText = false;
       }
 
       return this.counter2;
@@ -85,11 +89,6 @@ export default {
       alert("click");
     },
   },
-  // methods: {
-  //   titleChange() {
-  //     this.titulo = document.querySelector('"titulo').innerHTML;
-  //   },
-  // },
 };
 </script>
 
@@ -107,7 +106,7 @@ td {
 td {
   min-height: 20px;
 }
-/* #app > div:nth-child(3) > table */
+
 div:nth-child(3) > table {
   width: 70%;
   margin: 0 auto;
@@ -147,7 +146,6 @@ button {
   padding: 15px;
 }
 span {
-  /* color: rgb(167, 162, 162); */
   color: rgb(48, 48, 48);
   font-size: 0.7rem;
   font-weight: bold;
