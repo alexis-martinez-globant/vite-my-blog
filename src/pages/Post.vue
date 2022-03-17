@@ -142,14 +142,14 @@ export default {
       console.table(this.postId);
     },
   },
-  watch: {
-    id() {
-      this.getPost();
-    },
-    // postId() {
-    //   this.getComment();
-    // },
-  },
+  // watch: {
+  //   id() {
+  //     this.getPost();
+  //   },
+  //   // postId() {
+  //   //   this.getComment();
+  //   // },
+  // },
 };
 </script>
 
