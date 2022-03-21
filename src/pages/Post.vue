@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   // data() {
   //   return {
@@ -98,14 +100,12 @@ export default {
   methods: {
     async getPost() {
       try {
-        const post = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${this.id}`
-        ).then((r) => r.json());
-        this.post = post;
-        // console.log(blog);
+        axios
+          .get(`https://jsonplaceholder.typicode.com/posts/${this.id}`)
+          .then((r) => (this.post = r.data));
       } catch (error) {
-        this.$router.push("/");
-        // console.log("no blog");
+        // this.$router.push("/");
+        console.log("no post here");
       }
     },
     // async getComment() {
@@ -123,15 +123,12 @@ export default {
 
     async getAllComments() {
       try {
-        const comments = await fetch(
-          `https://jsonplaceholder.typicode.com/comments`
-        ).then((r) => r.json());
-        this.comments = comments;
-        // console.log(comments);
+        axios
+          .get(`https://jsonplaceholder.typicode.com/comments`)
+          .then((r) => (this.comments = r.data));
       } catch (error) {
-        // console.log(comments);
-        this.$router.push("/");
-        console.log("no blogs here");
+        // this.$router.push("/");
+        console.log("no post here");
       }
     },
 

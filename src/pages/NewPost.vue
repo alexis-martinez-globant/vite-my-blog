@@ -43,12 +43,6 @@
 
 <script>
 export default {
-  // props: {
-  //   titulo: {
-  //     type: Number,
-  //     required: true,
-  //   },
-  // },
   data: function () {
     return {
       titulo: "",
