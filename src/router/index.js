@@ -14,6 +14,12 @@ const routes = [
     component: () => import("../pages/Login.vue"),
   },
   {
+    path: "/register",
+    alias: "/Register",
+    name: "Register",
+    component: () => import("../pages/Register.vue"),
+  },
+  {
     path: "/post/:id",
     name: "Post",
     component: () => import("../pages/Post.vue"),

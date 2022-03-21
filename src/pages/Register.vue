@@ -1,7 +1,7 @@
 <template>
-  <h1>Login or Register</h1>
+  <h1>Welcome to Register area</h1>
   <hr />
-  <form id="loginForm" @submit="checkForm">
+  <form action @submit.prevent="login">
     <legend for="email">Email</legend>
     <input
       type="email"
@@ -21,7 +21,17 @@
       placeholder=" *** "
     />
     <br />
-    <p v-if="error.length">Something went wrong</p>
+    <br />
+    <legend for="password">Repeat password</legend>
+    <input
+      type="password"
+      name="password2"
+      id="password2"
+      v-model="username2"
+      placeholder=" *** "
+    />
+    <br />
+    <p v-if="error">Something went wrong</p>
     <br />
     <input type="submit" value="Enter" />
     <hr />
@@ -30,31 +40,21 @@
 
 <script>
 export default {
-  name: "Login",
+  name: "Registro",
   data() {
     return {
-      email: null,
-      username: null,
-      error: [],
+      email: "",
+      username: "",
+      username2: "",
+      error: false,
     };
   },
   methods: {
     login() {
       console.log(this.email);
       console.log(this.username);
-      console.log("login llamado");
-    },
-
-    checkForm(e) {
-      // this.error = [];
-      if (this.email && this.username) {
-        return true;
-      } else if (!this.email || !this.username) {
-        this.error.push("Something went wrong");
-      }
-
-      login();
-      e.preventDefault();
+      console.log(this.username2);
+      console.log("alsakjd");
     },
   },
 };
