@@ -21,6 +21,7 @@
             <!-- <router-link to="/blog/{{blog.id}}">► {{ blog.id }}</router-link> -->
             <!-- <router-link to="/blog/${{blog.id}}">► {{ blog.id }}</router-link> -->
             <!-- <router-link to="`/blog/${{blog.id}}`">► {{ blog.id }}</router-link> -->
+
             <router-link
               :to="{ name: 'Post', params: { id: post.id, postId: post.id } }"
             >
@@ -34,6 +35,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -41,7 +44,11 @@ export default {
       comments: null,
     };
   },
-
+  // mounted() {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/posts/")
+  //     .then((r) => ((this.posts = r.data), console.log(r.data)));
+  // },
   created() {
     this.getAllPosts();
     // this.getComments();
@@ -50,16 +57,15 @@ export default {
   methods: {
     async getAllPosts() {
       try {
-        const posts = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/`
-        ).then((r) => r.json());
-        this.posts = posts;
-        // console.log(blogs);
+        axios
+          .get("https://jsonplaceholder.typicode.com/posts/")
+          .then((r) => (this.posts = r.data));
       } catch (error) {
-        this.$router.push("/");
+        // this.$router.push("/");
         console.log("no blogs here");
       }
     },
+
     // async getAllComments() {
     //   try {
     //     const comments = await fetch(
@@ -74,14 +80,14 @@ export default {
     //   }
     // },
   },
-  watch: {
-    id() {
-      this.getAllPosts();
-    },
-    // postId() {
-    //   this.getAllComments();
-    // },
-  },
+  // watch: {
+  //   id() {
+  //     this.getAllPosts();
+  //   },
+  //   // postId() {
+  //   //   this.getAllComments();
+  //   // },
+  // },
 };
 </script>
 
