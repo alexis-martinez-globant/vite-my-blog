@@ -62,7 +62,7 @@ export default {
           .then((r) => (this.posts = r.data));
       } catch (error) {
         // this.$router.push("/");
-        console.log("no blogs here");
+        console.log("no posts here");
       }
     },
 
