@@ -8,7 +8,6 @@
           <th>Post id</th>
           <th>Title</th>
           <th>Text</th>
-          <!-- <th>Go to</th> -->
         </tr>
       </thead>
       <tbody>
@@ -18,10 +17,6 @@
           <td>{{ post.title }}</td>
           <td>{{ post.body }}</td>
           <td class="bg-green">
-            <!-- <router-link to="/blog/{{blog.id}}">► {{ blog.id }}</router-link> -->
-            <!-- <router-link to="/blog/${{blog.id}}">► {{ blog.id }}</router-link> -->
-            <!-- <router-link to="`/blog/${{blog.id}}`">► {{ blog.id }}</router-link> -->
-
             <router-link
               :to="{ name: 'Post', params: { id: post.id, postId: post.id } }"
             >
@@ -35,20 +30,15 @@
 </template>
 
 <script>
-import axios from "axios";
+import { HTTP } from "../services/http-common";
 
 export default {
   data() {
     return {
-      posts: null,
-      comments: null,
+      posts: [],
+      comments: [],
     };
   },
-  // mounted() {
-  //   axios
-  //     .get("https://jsonplaceholder.typicode.com/posts/")
-  //     .then((r) => ((this.posts = r.data), console.log(r.data)));
-  // },
   created() {
     this.getAllPosts();
     // this.getComments();
@@ -57,37 +47,13 @@ export default {
   methods: {
     async getAllPosts() {
       try {
-        axios
-          .get("https://jsonplaceholder.typicode.com/posts/")
-          .then((r) => (this.posts = r.data));
+        HTTP.get(`posts.json`).then((r) => (this.posts = r.data));
       } catch (error) {
         // this.$router.push("/");
         console.log("no posts here");
       }
     },
-
-    // async getAllComments() {
-    //   try {
-    //     const comments = await fetch(
-    //       `https://jsonplaceholder.typicode.com/comments`
-    //     ).then((r) => r.json());
-    //     this.comments = comments;
-    //     console.log(comments);
-    //   } catch (error) {
-    //     console.log(comments);
-    //     this.$router.push("/");
-    //     console.log("no blogs here");
-    //   }
-    // },
   },
-  // watch: {
-  //   id() {
-  //     this.getAllPosts();
-  //   },
-  //   // postId() {
-  //   //   this.getAllComments();
-  //   // },
-  // },
 };
 </script>
 

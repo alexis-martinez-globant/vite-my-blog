@@ -57,20 +57,8 @@
 </template>
 
 <script>
-import axios from "axios";
-
+import { HTTP } from "../services/http-common";
 export default {
-  // data() {
-  //   return {
-  //     // id: this.$rout.params.id,
-  //     id: null
-  //   }
-  // },
-  // created() {
-  //   const { id } = this.$route.params;
-  //   console.log(this.$route);
-  //   this.id = id;
-  // },
   data() {
     return {
       post: null,
@@ -81,7 +69,6 @@ export default {
 
   created() {
     this.getPost();
-    // this.getComment();
     this.getAllComments();
     this.readParams();
   },
@@ -100,35 +87,18 @@ export default {
   methods: {
     async getPost() {
       try {
-        axios
-          .get(`https://jsonplaceholder.typicode.com/posts/${this.id}`)
-          .then((r) => (this.post = r.data));
+        HTTP.get(`posts/${this.id}.json`).then((r) => (this.post = r.data));
       } catch (error) {
         // this.$router.push("/");
         console.log("no post here");
       }
     },
-    // async getComment() {
-    //   try {
-    //     const comment = await fetch(
-    //       `https://jsonplaceholder.typicode.com/comments/${this.postId}`
-    //     ).then((r) => r.json());
-    //     this.comment = comment;
-    //     console.log("comentario " + comment);
-    //     console.log("post id " + comment.postId);
-    //   } catch (error) {
-    //     this.$router.push("/");
-    //   }
-    // },
-
     async getAllComments() {
       try {
-        axios
-          .get(`https://jsonplaceholder.typicode.com/comments`)
-          .then((r) => (this.comments = r.data));
+        HTTP.get(`comments.json`).then((r) => (this.comments = r.data));
       } catch (error) {
         // this.$router.push("/");
-        console.log("no post here");
+        console.log("no comment here");
       }
     },
 
